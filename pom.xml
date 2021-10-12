@@ -14,9 +14,11 @@
     <version>1.0.0</version>
     <properties>
         <java.version>11</java.version>
+        <spring-cloud.version>2020.0.4</spring-cloud.version>
     </properties>
     <modules>
         <module>products</module>
+        <module>discovery</module>
     </modules>
     <dependencies>
 
@@ -51,5 +53,15 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
