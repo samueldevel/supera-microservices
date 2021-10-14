@@ -14,11 +14,17 @@
     <description>Supera&apos;s Service Discovery</description>
     <properties>
         <java.version>11</java.version>
+        <jersey-apache-client4.version>1.19.4</jersey-apache-client4.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey.contribs</groupId>
+            <artifactId>jersey-apache-client4</artifactId>
+            <version>${jersey-apache-client4.version}</version>
         </dependency>
     </dependencies>
 
