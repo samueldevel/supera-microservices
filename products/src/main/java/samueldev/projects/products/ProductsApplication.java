@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableEurekaClient
-@EntityScan({"samueldev.projects.core.domain"})
-@EnableJpaRepositories({"samueldev.projects.core.repository"})
+@EntityScan({"domain"})
+@EnableJpaRepositories({"repository"})
 public class ProductsApplication {
 
     public static void main(String[] args) {
