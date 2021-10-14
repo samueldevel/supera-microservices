@@ -12,9 +12,9 @@ spring:
         - id: products
           uri: http://localhost:8082/
           filters:
-            - PrefixPath=/products
+            - PrefixPath=/v1
           predicates:
-            - Path=/v1/products/**
+            - Path=/products/**
 eureka:
   instance:
     prefer-ip-adress: true
