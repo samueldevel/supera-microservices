@@ -3,8 +3,8 @@ package samueldev.projects.products.mappers;
 import domain.Products;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
-import samueldev.projects.products.requests.ProductsPostRequestBody;
-import samueldev.projects.products.requests.ProductsPutRequestBody;
+import requests.ProductsPostRequestBody;
+import requests.ProductsPutRequestBody;
 
 
 @Mapper(componentModel = "spring")

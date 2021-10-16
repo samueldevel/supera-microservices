@@ -6,9 +6,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import repository.ProductsRepository;
+import requests.ProductsPostRequestBody;
+import requests.ProductsPutRequestBody;
 import samueldev.projects.products.mappers.ProductsMapper;
-import samueldev.projects.products.requests.ProductsPostRequestBody;
-import samueldev.projects.products.requests.ProductsPutRequestBody;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ import java.util.List;
 public class ProductsService {
     private final ProductsRepository productsRepository;
 
-    public Page<Products> findAllPageables(Pageable pageable) {
+    public Page<Products> findAllPageable(Pageable pageable) {
 
         return productsRepository.findAll(pageable);
     }

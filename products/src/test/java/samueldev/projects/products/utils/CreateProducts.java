@@ -13,10 +13,20 @@ public class CreateProducts {
                 .build();
     }
 
-    public static Products createProductToBeUpdated(Long id) {
+    public static Products createValidProduct() {
         return Products.builder()
-                .id(id)
+                .id(1L)
                 .name("Call Of Duty Infinite Warfare")
+                .price(49.99)
+                .score(80)
+                .image("call-of-duty-infinite-warfare.png")
+                .build();
+    }
+
+    public static Products createValidUpdateProduct() {
+        return Products.builder()
+                .id(1L)
+                .name("Call Of Duty Infinite Warfare II")
                 .price(49.99)
                 .score(80)
                 .image("call-of-duty-infinite-warfare.png")
