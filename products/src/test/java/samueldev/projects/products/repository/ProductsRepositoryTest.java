@@ -35,7 +35,7 @@ class ProductsRepositoryTest {
     @Test
     @DisplayName("save Updates product when successful")
     void save_UpdatesProduct_WhenSuccessful() {
-        Products productToBeSaved = CreateProducts.createProductToBeUpdated(1L);
+        Products productToBeSaved = CreateProducts.createValidProduct();
 
         Products productSaved = this.productsRepository.save(productToBeSaved);
 
