@@ -1,9 +1,8 @@
 package samueldev.projects.auth.security.filter;
 
-import com.nimbusds.jose.JOSEException;
-import com.nimbusds.jose.JOSEObjectType;
-import com.nimbusds.jose.JWSAlgorithm;
-import com.nimbusds.jose.JWSHeader;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nimbusds.jose.*;
+import com.nimbusds.jose.crypto.DirectEncrypter;
 import com.nimbusds.jose.crypto.RSASSASigner;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jwt.JWTClaimsSet;
@@ -19,13 +18,10 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import property.JwtConfiguration;
-import samueldev.projects.auth.mappers.ApplicationUserMapper;
 
 import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
@@ -46,8 +42,8 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
     @SneakyThrows
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        log.info("Attempting authenticate. . 1.");
-        ApplicationUser applicationUser = ApplicationUserMapper.INSTANCE.toApplicationUser(request.getInputStream());
+        log.info("Attempting authenticate. . .");
+        ApplicationUser applicationUser = new ObjectMapper().readValue(request.getInputStream(), ApplicationUser.class);
 
         validateIfEntityIsNull(applicationUser, "Unable to retrieve the username or password");
 
@@ -63,8 +59,19 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
     }
 
     @Override
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication auth) throws IOException, ServletException {
+    @SneakyThrows
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication auth) {
         log.info("user '{}' has been successfully authenticated, generating JWE token...", auth.getName());
+
+        SignedJWT signedJWT = createSignedJWT(auth);
+
+        String encryptToken = encryptToken(signedJWT);
+
+        log.info("Token generated successfully, adding it to the response header");
+
+        response.addHeader("Access-Control-Expose-Headers", "XSRF-TOKEN, " + jwtConfiguration.getHeader().getName());
+
+        response.addHeader(jwtConfiguration.getHeader().getName(), jwtConfiguration.getHeader().getPrefix() + encryptToken);
     }
 
     private SignedJWT createSignedJWT(Authentication auth) throws JOSEException, NoSuchAlgorithmException {
@@ -87,6 +94,8 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 
         signedJWT.sign(signer);
 
+        log.info("Serialized token '{}'", signedJWT.serialize());
+
         return signedJWT;
     }
 
@@ -108,7 +117,6 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
         KeyPairGenerator rsaKey = KeyPairGenerator.getInstance("RSA");
 
         rsaKey.initialize(2048);
-
         return rsaKey.genKeyPair();
     }
 
@@ -118,5 +126,23 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
         return new RSAKey.Builder((RSAPublicKey) rsaKeys.getPublic())
                 .keyID(UUID.randomUUID().toString())
                 .build();
+    }
+
+    private String encryptToken(SignedJWT signedJWT) throws JOSEException {
+        log.info("Starting the encryptToken method");
+
+        DirectEncrypter directEncrypter = new DirectEncrypter(jwtConfiguration.getPrivateKey().getBytes());
+
+        JWEObject jweObject = new JWEObject(new JWEHeader.Builder(JWEAlgorithm.DIR, EncryptionMethod.A128CBC_HS256)
+                .contentType("JWT")
+                .build(), new Payload(signedJWT));
+
+        log.info("Encrypting token with private key");
+
+        jweObject.encrypt(directEncrypter);
+
+        log.info("Token encrypted");
+
+        return jweObject.serialize();
     }
 }
