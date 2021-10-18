@@ -8,24 +8,32 @@
         <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath><!-- lookup parent from repository -->
     </parent>
-    <artifactId>products</artifactId>
+    <artifactId>auth</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>products</name>
-    <description>Supera&apos;s products api</description>
+    <name>auth</name>
+    <description>Supera&apos;s Authentication Service</description>
     <properties>
         <java.version>11</java.version>
-        <core.version>1.0.0</core.version>
-        <mapstruct.version>1.4.2.Final</mapstruct.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>samueldev.projects</groupId>
             <artifactId>core</artifactId>
-            <version>${core.version}</version>
+            <version>1.0.0</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
@@ -34,14 +42,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
