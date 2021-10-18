@@ -1,6 +1,6 @@
 package samueldev.projects.products.services;
 
-import domain.Products;
+import samueldev.projects.core.domain.Products;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -14,7 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import repository.ProductsRepository;
+import samueldev.projects.core.repository.ProductsRepository;
 import samueldev.projects.products.utils.CreateProducts;
 import samueldev.projects.products.utils.CreateProductsRequestBody;
 import samueldev.projects.products.utils.ValidatingProductFields;

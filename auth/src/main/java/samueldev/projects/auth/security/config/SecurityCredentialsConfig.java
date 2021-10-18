@@ -1,43 +1,34 @@
 package samueldev.projects.auth.security.config;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.cors.CorsConfiguration;
-import property.JwtConfiguration;
 import samueldev.projects.auth.security.filter.JwtUsernameAndPasswordAuthenticationFilter;
-
-import javax.servlet.http.HttpServletResponse;
-
-import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
+import samueldev.projects.core.property.JwtConfiguration;
+import samueldev.projects.security.config.SecurityTokenConfig;
+import samueldev.projects.security.token.creator.TokenCreator;
 
 @EnableWebSecurity
-@RequiredArgsConstructor
-public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
+public class SecurityCredentialsConfig extends SecurityTokenConfig {
     private final UserDetailsService userDetailsService;
-    private final JwtConfiguration jwtConfiguration;
+    private final TokenCreator tokenCreator;
+
+    public SecurityCredentialsConfig(JwtConfiguration jwtConfiguration, UserDetailsService userDetailsService, TokenCreator tokenCreator) {
+        super(jwtConfiguration);
+        this.userDetailsService = userDetailsService;
+        this.tokenCreator = tokenCreator;
+    }
 
     @Override
 
     protected void configure(HttpSecurity http) throws Exception {
+        super.configure(http);
         http
-                .csrf().disable()
-                .cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues())
-                .and()
-                .sessionManagement().sessionCreationPolicy(STATELESS)
-                .and()
-                .exceptionHandling().authenticationEntryPoint((req, resp, e) -> resp.sendError(HttpServletResponse.SC_UNAUTHORIZED))
-                .and()
-                .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfiguration))
-                .authorizeRequests()
-                .antMatchers(jwtConfiguration.getLoginUrl()).permitAll()
-                .antMatchers("/v1/products/**").hasRole("ADMIN")
-                .anyRequest().authenticated();
+                .addFilter(new JwtUsernameAndPasswordAuthenticationFilter
+                        (authenticationManager(), jwtConfiguration, tokenCreator));
     }
 
     @Override

@@ -1,6 +1,6 @@
 package samueldev.projects.products.utils;
 
-import domain.Products;
+import samueldev.projects.core.domain.Products;
 
 public class CreateProducts {
 

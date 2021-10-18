@@ -1,6 +1,6 @@
-package repository;
+package samueldev.projects.core.repository;
 
-import domain.ApplicationUser;
+import samueldev.projects.core.domain.ApplicationUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ApplicationUserRepository extends JpaRepository<ApplicationUser, Long> {
