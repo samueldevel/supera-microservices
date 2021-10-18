@@ -23,7 +23,6 @@ public class JwtConfiguration {
 
     @Getter
     @Setter
-
     public static class Header {
         private String name = "Authorization";
         private String prefix = "Bearer ";
