@@ -1,8 +1,8 @@
-package repository;
+package samueldev.projects.core.repository;
 
 
-import domain.Products;
 import org.springframework.data.jpa.repository.JpaRepository;
+import samueldev.projects.core.domain.Products;
 
 import java.util.List;
 

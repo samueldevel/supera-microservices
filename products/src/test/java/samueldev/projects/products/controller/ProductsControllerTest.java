@@ -1,6 +1,6 @@
 package samueldev.projects.products.controller;
 
-import domain.Products;
+import samueldev.projects.core.domain.Products;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -15,8 +15,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import requests.ProductsPostRequestBody;
-import requests.ProductsPutRequestBody;
+import samueldev.projects.core.requests.ProductsPostRequestBody;
+import samueldev.projects.core.requests.ProductsPutRequestBody;
 import samueldev.projects.products.services.ProductsService;
 import samueldev.projects.products.utils.CreateProducts;
 import samueldev.projects.products.utils.CreateProductsRequestBody;

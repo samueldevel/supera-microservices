@@ -1,7 +1,7 @@
 package samueldev.projects.products.utils;
 
-import requests.ProductsPostRequestBody;
-import requests.ProductsPutRequestBody;
+import samueldev.projects.core.requests.ProductsPostRequestBody;
+import samueldev.projects.core.requests.ProductsPutRequestBody;
 
 public class CreateProductsRequestBody {
     public static ProductsPostRequestBody createProductsPostRequestBody() {

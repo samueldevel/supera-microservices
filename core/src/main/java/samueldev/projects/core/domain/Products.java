@@ -1,4 +1,4 @@
-package domain;
+package samueldev.projects.core.domain;
 
 import lombok.*;
 import org.hibernate.Hibernate;
