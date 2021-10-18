@@ -1,4 +1,4 @@
-package samueldev.projects.products.services;
+package services;
 
 import domain.Products;
 import lombok.RequiredArgsConstructor;
