@@ -1,4 +1,4 @@
-package controller;
+package samueldev.projects.products.controller;
 
 import domain.Products;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import requests.ProductsPostRequestBody;
 import requests.ProductsPutRequestBody;
-import services.ProductsService;
+import samueldev.projects.products.services.ProductsService;
 
 import java.util.List;
 
