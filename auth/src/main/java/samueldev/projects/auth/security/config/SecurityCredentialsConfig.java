@@ -8,9 +8,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import property.JwtConfiguration;
+import samueldev.projects.auth.security.filter.JwtUsernameAndPasswordAuthenticationFilter;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -33,10 +33,10 @@ public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .exceptionHandling().authenticationEntryPoint((req, resp, e) -> resp.sendError(HttpServletResponse.SC_UNAUTHORIZED))
                 .and()
-                .addFilter(new UsernamePasswordAuthenticationFilter())
+                .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfiguration))
                 .authorizeRequests()
                 .antMatchers(jwtConfiguration.getLoginUrl()).permitAll()
-                .antMatchers("/v1/products/admin/**").hasRole("ADMIN")
+                .antMatchers("/v1/products/**").hasRole("ADMIN")
                 .anyRequest().authenticated();
     }
 
@@ -46,7 +46,7 @@ public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    private BCryptPasswordEncoder passwordEncoder() {
+    public BCryptPasswordEncoder passwordEncoder() {
 
         return new BCryptPasswordEncoder();
     }
