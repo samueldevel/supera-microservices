@@ -59,6 +59,7 @@ public class TokenCreator {
                 .subject(applicationUser.getUsername())
                 .claim("authorities", auth.getAuthorities()
                         .stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
+                .claim("userId", applicationUser.getId())
                 .issuer("samueldev")
                 .issueTime(new Date())
                 .expirationTime(new Date(System.currentTimeMillis() + (jwtConfiguration.getExpiration() * 1000L)))
