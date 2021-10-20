@@ -6,19 +6,15 @@ spring:
     name: gateway
   main:
     web-application-type: reactive
-  cloud:
-    gateway:
-      routes:
-        - id: products
-          uri: http://localhost:8082/
-          filters:
-            - PrefixPath=/v1
-          predicates:
-            - Path=/products/**
-        - id: auth
-          uri: http://localhost:8083/
-          predicates:
-            - Path=/login/**
+    allow-bean-definition-overriding: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/superagames?createDatabaseIfNotExist=true
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+
 eureka:
   instance:
     prefer-ip-adress: true

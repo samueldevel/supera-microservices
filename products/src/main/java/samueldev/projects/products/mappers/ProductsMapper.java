@@ -1,4 +1,4 @@
-package samueldev.projects.core.mappers;
+package samueldev.projects.products.mappers;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

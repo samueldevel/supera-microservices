@@ -20,8 +20,7 @@ public class ProductsController {
     private final ProductsService productsService;
 
     @GetMapping()
-    public ResponseEntity<List<Products>> findAll(@RequestHeader(value = "username") String username,
-                                                  @RequestHeader(value = "id") String id) {
+    public ResponseEntity<List<Products>> findAll() {
 
         return new ResponseEntity<>(productsService.findAll(), HttpStatus.OK);
     }
