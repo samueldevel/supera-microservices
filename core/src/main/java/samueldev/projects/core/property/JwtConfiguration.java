@@ -1,4 +1,4 @@
-package property;
+package samueldev.projects.core.property;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package requests;
+package samueldev.projects.core.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,10 +1,10 @@
-package samueldev.projects.products.mappers;
+package samueldev.projects.core.mappers;
 
-import domain.Products;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
-import requests.ProductsPostRequestBody;
-import requests.ProductsPutRequestBody;
+import samueldev.projects.core.domain.Products;
+import samueldev.projects.core.requests.ProductsPostRequestBody;
+import samueldev.projects.core.requests.ProductsPutRequestBody;
 
 
 @Mapper(componentModel = "spring")

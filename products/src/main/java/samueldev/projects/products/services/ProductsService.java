@@ -1,13 +1,13 @@
 package samueldev.projects.products.services;
 
-import domain.Products;
+import samueldev.projects.core.domain.Products;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import repository.ProductsRepository;
-import requests.ProductsPostRequestBody;
-import requests.ProductsPutRequestBody;
+import samueldev.projects.core.repository.ProductsRepository;
+import samueldev.projects.core.requests.ProductsPostRequestBody;
+import samueldev.projects.core.requests.ProductsPutRequestBody;
 import samueldev.projects.products.mappers.ProductsMapper;
 
 import java.util.List;

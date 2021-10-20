@@ -6,7 +6,7 @@
         <groupId>samueldev.projects</groupId>
         <artifactId>supera-microservices</artifactId>
         <version>1.0.0</version>
-        <relativePath>../pom.xml</relativePath><!-- lookup parent from repository -->
+        <relativePath>../pom.xml</relativePath><!-- lookup parent from samueldev.projects.core.repository -->
     </parent>
     <artifactId>gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
