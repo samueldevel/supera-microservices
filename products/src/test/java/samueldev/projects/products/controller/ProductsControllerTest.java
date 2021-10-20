@@ -80,7 +80,7 @@ class ProductsControllerTest {
     void findAllNonPageable_ReturnsListOfProducts_WhenSuccessful() {
         Products validProduct = CreateProducts.createValidProduct();
 
-        ResponseEntity<List<Products>> entityNonPageable = productsController.findAll("id", "admin");
+        ResponseEntity<List<Products>> entityNonPageable = productsController.findAll();
 
         Assertions.assertThat(entityNonPageable.getStatusCode()).isEqualTo(HttpStatus.OK);
 
@@ -195,7 +195,7 @@ class ProductsControllerTest {
         BDDMockito.when(productsServiceMock.findAll())
                 .thenReturn(Collections.emptyList());
 
-        ResponseEntity<List<Products>> entityNonPageable = productsController.findAll("id", "admin");
+        ResponseEntity<List<Products>> entityNonPageable = productsController.findAll();
 
         Assertions.assertThat(entityNonPageable.getBody())
                 .isNotNull()
