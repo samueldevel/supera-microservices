@@ -1,8 +1,8 @@
-package samueldev.projects.products.mappers;
+package samueldev.projects.core.mappers;
 
-import samueldev.projects.core.domain.Products;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import samueldev.projects.core.domain.Products;
 import samueldev.projects.core.requests.ProductsPostRequestBody;
 import samueldev.projects.core.requests.ProductsPutRequestBody;
 
