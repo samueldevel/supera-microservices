@@ -10,10 +10,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import samueldev.projects.core.property.JwtConfiguration;
 
 @SpringBootApplication
-@EnableConfigurationProperties(value = JwtConfiguration.class)
 @EntityScan({"samueldev.projects.core.domain"})
 @EnableJpaRepositories({"samueldev.projects.core.repository"})
 @EnableEurekaClient
+@EnableConfigurationProperties(value = JwtConfiguration.class)
 @ComponentScan("samueldev.projects")
 public class AuthApplication {
     public static void main(String[] args) {
@@ -21,3 +21,4 @@ public class AuthApplication {
     }
 
 }
+
