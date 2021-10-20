@@ -1,7 +1,7 @@
 package samueldev.projects.products.utils;
 
-import samueldev.projects.core.domain.Products;
 import org.assertj.core.api.Assertions;
+import samueldev.projects.core.domain.Products;
 
 public class ValidatingProductFields {
     public static void ValidateProductFields(Products fromProduct) {
