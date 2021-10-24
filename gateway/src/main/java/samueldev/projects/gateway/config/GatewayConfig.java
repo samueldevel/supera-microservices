@@ -22,6 +22,7 @@ public class GatewayConfig {
                 .route("products", r -> r.path("/products/v1/products/**")
                         .filters(f -> f.filter(filter).stripPrefix(1))
                         .uri("http://localhost:8082"))
+
                 .build();
     }
 
