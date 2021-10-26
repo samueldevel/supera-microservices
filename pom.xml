@@ -18,6 +18,8 @@
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <nimbus-jose-jwt.version>9.15.2</nimbus-jose-jwt.version>
         <spring-boot-admin.version>2.4.3</spring-boot-admin.version>
+        <springfox-boot-starter.version>3.0.0</springfox-boot-starter.version>
+        <springfox-swagger-ui.version>3.0.0</springfox-swagger-ui.version>
     </properties>
     <modules>
         <module>discovery</module>
@@ -29,6 +31,16 @@
         <module>monitor</module>
     </modules>
     <dependencies>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${springfox-swagger-ui.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>${springfox-boot-starter.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
