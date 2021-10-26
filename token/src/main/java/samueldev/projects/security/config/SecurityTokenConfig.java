@@ -1,6 +1,7 @@
 package samueldev.projects.security.config;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.web.cors.CorsConfiguration;
@@ -26,6 +27,10 @@ public class SecurityTokenConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(jwtConfiguration.getLoginUrl()).permitAll()
+                .antMatchers("/actuator/**").permitAll()
+                .antMatchers("/swagger-ui/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/swagger-resources/**", "/webjars/springfox-swagger-ui/**"
+                        , "/v2/api-docs/**").permitAll()
                 .antMatchers("/v1/products/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
