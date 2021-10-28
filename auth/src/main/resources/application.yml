@@ -8,9 +8,14 @@ spring:
     url: jdbc:mysql://localhost:3306/superagames?createDatabaseIfNotExist=true
     username: root
     password: root
+
   jpa:
     hibernate:
       ddl-auto: update
+  flyway:
+    table: auth_flyway_schema_history
+    baseline-on-migrate: true
+
 
 eureka:
   instance:
