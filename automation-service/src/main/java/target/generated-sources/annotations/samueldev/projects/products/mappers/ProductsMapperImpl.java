@@ -9,7 +9,7 @@ import samueldev.projects.core.requests.ProductsPutRequestBody;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-10-25T22:28:26-0300",
+    date = "2021-10-27T20:41:19-0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.12 (Oracle Corporation)"
 )
 @Component
