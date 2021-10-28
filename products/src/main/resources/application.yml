@@ -11,6 +11,10 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+      show-sql: true
+  flyway:
+    table: products_flyway_schema_history
+    baseline-on-migrate: true
 
 eureka:
   instance:
