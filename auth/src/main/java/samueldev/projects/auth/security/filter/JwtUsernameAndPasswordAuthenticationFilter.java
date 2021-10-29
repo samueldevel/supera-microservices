@@ -55,7 +55,7 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
         log.info("user '{}' has been successfully authenticated, generating JWE token...", auth.getName());
 
         SignedJWT signedJWT = tokenCreator.createSignedJWT(auth);
-
+        
         String encryptToken = tokenCreator.encryptToken(signedJWT);
 
         log.info("Token generated successfully, adding it to the response header");
