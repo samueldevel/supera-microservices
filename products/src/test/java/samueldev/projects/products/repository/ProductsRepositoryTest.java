@@ -13,7 +13,7 @@ import javax.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.Optional;
 
-@DataJpaTest
+@DataJpaTest()
 @DisplayName("Tests for Products samueldev.projects.core.repository")
 class ProductsRepositoryTest {
 
@@ -79,7 +79,7 @@ class ProductsRepositoryTest {
                 .contains(productSavedTwo);
 
         Assertions.assertThat(allProducts.size())
-                .isEqualTo(2);
+                .isEqualTo(11);
 
     }
 
@@ -174,10 +174,10 @@ class ProductsRepositoryTest {
     @Test
     @DisplayName("findAll Returns empty list when no have products")
     void findAll_ReturnsEmptyList_WhenNoHaveProducts() {
+        this.productsRepository.deleteAll();
+        List<Products> allProducts = this.productsRepository.findAll();
 
-        List<Products> productById = this.productsRepository.findAll();
-
-        Assertions.assertThat(productById)
+        Assertions.assertThat(allProducts)
                 .isNotNull()
                 .isEmpty();
     }
@@ -185,7 +185,7 @@ class ProductsRepositoryTest {
     @Test
     @DisplayName("findById Returns empty list when id not found")
     void findById_ReturnsEmptyList_WhenIdNotFound() {
-        Optional<Products> emptyList = this.productsRepository.findById(1L);
+        Optional<Products> emptyList = this.productsRepository.findById(99L);
 
         Assertions.assertThat(emptyList)
                 .isNotNull()
