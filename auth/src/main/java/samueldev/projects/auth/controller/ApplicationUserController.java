@@ -18,6 +18,7 @@ import java.security.Principal;
 @RequiredArgsConstructor
 @RequestMapping("/v1/user")
 @Api(value = "Endpoints to manage auth users")
+@CrossOrigin(value = "*")
 public class ApplicationUserController {
     private final ApplicationUserService applicationUserService;
 
@@ -28,7 +29,7 @@ public class ApplicationUserController {
     }
 
     @PostMapping(path = "/token")
-    @ApiOperation(value = "Generation token after set exist user on request body", response = ApplicationUser.class)
+    @ApiOperation(value = "Manages token after set exist user on request body", response = ApplicationUser.class)
     public ResponseEntity<String> getUserToken(@RequestBody RequestApplicationUserToCreateToken requestApplicationUserToCreateToken) throws NoSuchAlgorithmException, JOSEException {
 
         return new ResponseEntity<>(applicationUserService.getUserToken(requestApplicationUserToCreateToken), HttpStatus.OK);
