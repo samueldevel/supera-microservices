@@ -21,7 +21,7 @@ import java.security.Principal;
 @RequiredArgsConstructor
 public class ApplicationUserService {
     private final ApplicationUserRepository applicationUserRepository;
-    private final TokenCreatorWithoutContext tokenCreatorNonAuthentication;
+    private final TokenCreatorWithoutContext tokenCreatorWithoutContext;
     private final JwtConfiguration jwtConfiguration;
 
     public ApplicationUser findApplicationUserByUserAndPass(String username, String password) {
@@ -46,9 +46,9 @@ public class ApplicationUserService {
         ApplicationUser applicationUserByUserAndPass = findApplicationUserByUserAndPass
                 (applicationUser.getUsername(), applicationUser.getPassword());
 
-        SignedJWT signedJWT = tokenCreatorNonAuthentication.createSignedJWT(applicationUserByUserAndPass);
+        SignedJWT signedJWT = tokenCreatorWithoutContext.createSignedJWT(applicationUserByUserAndPass);
 
-        String encryptToken = tokenCreatorNonAuthentication.encryptToken(signedJWT);
+        String encryptToken = tokenCreatorWithoutContext.encryptToken(signedJWT);
 
         return jwtConfiguration.getHeader().getPrefix() + encryptToken;
     }

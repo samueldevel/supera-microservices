@@ -53,7 +53,7 @@ public class TokenCreator {
         return signedJWT;
     }
 
-    private JWTClaimsSet createJwtClaimsSet(Authentication auth, ApplicationUser applicationUser) {
+    protected JWTClaimsSet createJwtClaimsSet(Authentication auth, ApplicationUser applicationUser) {
         log.info("Creating the JwtClaimSet object for '{}'", applicationUser.toString());
         return new JWTClaimsSet.Builder()
                 .subject(applicationUser.getUsername())
@@ -66,7 +66,7 @@ public class TokenCreator {
                 .build();
     }
 
-    private KeyPair generateKeyPair() throws NoSuchAlgorithmException {
+    protected KeyPair generateKeyPair() throws NoSuchAlgorithmException {
         log.info("Generating RSA 2048 bits Keys");
 
         KeyPairGenerator rsaKey = KeyPairGenerator.getInstance("RSA");
@@ -75,7 +75,7 @@ public class TokenCreator {
         return rsaKey.genKeyPair();
     }
 
-    private RSAKey buildingJwk(KeyPair rsaKeys) {
+    protected RSAKey buildingJwk(KeyPair rsaKeys) {
         log.info("Building JWK from the RSA Keys");
 
         return new RSAKey.Builder((RSAPublicKey) rsaKeys.getPublic())
