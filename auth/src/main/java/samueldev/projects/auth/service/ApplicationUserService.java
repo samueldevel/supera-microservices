@@ -9,11 +9,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import samueldev.projects.auth.mappers.ApplicationUserMapper;
 import samueldev.projects.auth.requests.RequestApplicationUserToCreateToken;
-import samueldev.projects.auth.token.TokenCreatorNonAuthentication;
+import samueldev.projects.auth.token.TokenCreatorWithoutContext;
 import samueldev.projects.core.domain.ApplicationUser;
 import samueldev.projects.core.property.JwtConfiguration;
 import samueldev.projects.core.repository.ApplicationUserRepository;
-import samueldev.projects.security.token.converter.TokenConverter;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.Principal;
@@ -22,8 +21,7 @@ import java.security.Principal;
 @RequiredArgsConstructor
 public class ApplicationUserService {
     private final ApplicationUserRepository applicationUserRepository;
-    private final TokenCreatorNonAuthentication tokenCreatorNonAuthentication;
-    private final TokenConverter tokenConverter;
+    private final TokenCreatorWithoutContext tokenCreatorNonAuthentication;
     private final JwtConfiguration jwtConfiguration;
 
     public ApplicationUser findApplicationUserByUserAndPass(String username, String password) {
@@ -39,7 +37,6 @@ public class ApplicationUserService {
     }
 
     public ApplicationUser getUserInfo(Principal principal) {
-
         return (ApplicationUser) ((UsernamePasswordAuthenticationToken) principal).getPrincipal();
     }
 

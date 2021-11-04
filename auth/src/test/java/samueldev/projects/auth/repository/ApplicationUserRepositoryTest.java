@@ -107,7 +107,7 @@ class ApplicationUserRepositoryTest {
 
     @Test
     @DisplayName("findByUsername Returns null when username not found")
-    void findByName_ReturnsEmptyList_WhenNameNotFound() {
+    void findAllByName_ReturnsEmptyList_WhenNameNotFound() {
         ApplicationUser userSaved = this.applicationUserRepository.findByUsername("application user");
 
         Assertions.assertThat(userSaved)
