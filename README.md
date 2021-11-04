@@ -27,14 +27,14 @@ fins próprios e para facilitar quem quer testa-lá.</p>
 <p><b>Usuário com acesso de administrador</b></p>
 username: <b>developeradmin</b>
 <br/>
-senha: senha123
+senha: <b>senha123</b>
 
 <hr/>
 
 <p><b>Usuário com acesso comum</b></p>
 username: <b>developeruser</b>
 <br/>
-senha: senha123
+  senha: <b>senha123</b>
 
 </ul>
 
@@ -46,7 +46,7 @@ senha: senha123
 |Aviso: Antes de qualquer coisa, veja se o docker ou o banco de dados está ativado e sendo usado com sucesso!|
 | --- |
 
-|Aviso: Sempre inicialize o discovery primeiro, ele precisa regitrar os micro-serviços contidos, caso não queira se preucupar, é so inicializar o projeto pelo script|
+|Aviso: Sempre inicialize o discovery primeiro, ele precisa registrar os micro-serviços contidos, caso não queira se preucupar, é so inicializar o projeto pelo script|
 | --- |
 
 </div>
