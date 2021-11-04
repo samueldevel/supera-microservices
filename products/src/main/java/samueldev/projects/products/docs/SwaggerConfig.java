@@ -9,7 +9,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class
 SwaggerConfig extends BaseSwaggerConfig {
     public SwaggerConfig() {
-        super("samueldev.projects.products.controller");
+        super("samueldev.projects.products.controller", true
+        );
     }
 
 }
