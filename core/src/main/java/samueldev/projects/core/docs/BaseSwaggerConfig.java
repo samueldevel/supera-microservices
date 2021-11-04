@@ -14,21 +14,27 @@ import java.util.List;
 public class BaseSwaggerConfig {
     public static final String AUTHORIZATION_HEADER = "Authorization";
     private final String basePackages;
+    private final Boolean haveAuthorization;
 
-    public BaseSwaggerConfig(String basePackages) {
+    public BaseSwaggerConfig(String basePackages, Boolean haveAuthorization) {
         this.basePackages = basePackages;
+        this.haveAuthorization = haveAuthorization;
     }
 
     @Bean
     public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .securityContexts(List.of(securityContext()))
-                .securitySchemes(List.of(apiKey()))
+        Docket docket = new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage(basePackages))
                 .build()
                 .apiInfo(metaData());
 
+        if (Boolean.TRUE.equals(haveAuthorization)) {
+            docket.securityContexts(List.of(securityContext()));
+            docket.securitySchemes(List.of(apiKey()));
+        }
+
+        return docket;
     }
 
     private ApiInfo metaData() {

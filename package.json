@@ -9,12 +9,13 @@
   },
   "scripts": {
     "commit": "cz",
+    "docker-up": "docker-compose down && docker-compose up",
     "spring-run:discovery": "cd discovery/ && mvn spring-boot:run",
     "spring-run:auth": "cd auth/ && mvn spring-boot:run",
     "spring-run:gateway": "cd gateway/ && mvn spring-boot:run",
     "spring-run:products": "cd products/ && mvn spring-boot:run",
     "spring-run:monitor": "cd monitor/ && mvn spring-boot:run",
     "spring-run:all": "yarn spring-run:discovery & yarn spring-run:auth & yarn spring-run:gateway & yarn spring-run:products & yarn spring-run:monitor",
-    "spring-run:all-docker": "(docker-compose down && docker-compose up) & yarn spring-run:all"
+    "spring-run:all-docker": "yarn docker-up & yarn spring-run:all"
   }
 }
