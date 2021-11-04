@@ -19,7 +19,6 @@ import samueldev.projects.gateway.validator.RouterValidator;
 @RequiredArgsConstructor
 @Slf4j
 public class AuthFilter implements GatewayFilter {
-    private final RouterValidator routerValidator;
     private final JwtUtil jwtUtil;
     private final JwtConfiguration jwtConfiguration;
 
@@ -28,7 +27,7 @@ public class AuthFilter implements GatewayFilter {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
 
-        if (routerValidator.isSecured.test(request)) {
+        if (RouterValidator.isSecured.test(request)) {
             final String header = this.getAuthHeader(request);
 
             if (this.isAuthMissing(request) || !header.startsWith(jwtConfiguration.getHeader().getPrefix()))
