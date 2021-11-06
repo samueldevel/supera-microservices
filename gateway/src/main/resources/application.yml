@@ -8,12 +8,15 @@ spring:
     web-application-type: reactive
     allow-bean-definition-overriding: true
   datasource:
-    url: jdbc:mysql://localhost:3306/superagames?createDatabaseIfNotExist=true
+    url: jdbc:h2:mem:~/superagames
     username: root
     password: root
   jpa:
     hibernate:
       ddl-auto: update
+  h2:
+    console:
+      path: /h2
 
 eureka:
   instance:

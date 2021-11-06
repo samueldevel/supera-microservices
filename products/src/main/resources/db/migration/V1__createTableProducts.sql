@@ -1,4 +1,4 @@
-create TABLE IF NOT EXISTS products (
+create TABLE products (
     id INT AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
     price DOUBLE NOT NULL,

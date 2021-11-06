@@ -27,6 +27,7 @@ public class SecurityTokenConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(jwtConfiguration.getLoginUrl()).permitAll()
+                .antMatchers("/h2/**").permitAll()
                 .antMatchers("/actuator/**").permitAll()
                 .antMatchers("/swagger-ui/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/swagger-resources/**", "/webjars/springfox-swagger-ui/**"

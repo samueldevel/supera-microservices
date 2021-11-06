@@ -1,4 +1,4 @@
-create TABLE IF NOT EXISTS application_user (
+create TABLE application_user (
     id INT AUTO_INCREMENT,
     username VARCHAR(255) NOT NULL,
     password VARCHAR(500) NOT NULL,
