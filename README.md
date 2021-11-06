@@ -5,7 +5,19 @@
 | --- |
 
 <div>
-<h3>Flyway</h3>
+<h3>Pensando na agilidade</h3>
+
+<h6> Banco de dados </h6>
+
+<p>Aqui você pode tanto usar banco de dados em mémoria quanto o docker</p>
+
+<p>Branchs dos bancos de dados</p>
+
+> Branch main: Utiliza banco de dados em mémoria
+
+> Branch docker: Utiliza banco de dados mysql com container docker
+
+<h6>Flyway</h6>
 
 |Os usuários são criados após a inicialização do projeto|
 | --- |
@@ -14,7 +26,10 @@
 utilizando a ferramenta flyway foi desenvolvido os sqls que são nescessários
 para toda a aplicação, tais como os produtos e os usuários de autenticação</p>
 
-> Você pode criar seu próprio usuário ou produto se quiser
+<h6> Scripts </h6>
+Com os scripts feitos no projeto, você pode iniciar todos os módulos sem 
+precisar entrar no seu IDEA. Mais abaixo falarei sobre todos os scripts
+
 </div>
 
 <div>
