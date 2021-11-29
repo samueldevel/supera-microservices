@@ -38,6 +38,7 @@ public class SecurityTokenConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().accessDeniedHandler((req, resp, e) -> resp.sendError(HttpServletResponse.SC_UNAUTHORIZED, "this user does not have permission to access this url"));
-
     }
+
+
 }

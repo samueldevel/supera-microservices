@@ -27,7 +27,7 @@ public class ApplicationUserService {
     private final TokenConverter tokenConverter;
     private final JwtConfiguration jwtConfiguration;
 
-    public ApplicationUser findApplicationUserByUserAndPass(String username, String password) {
+    public ApplicationUser findApplicationUserByUserAndPass(String password, String username) {
 
         ApplicationUser applicationUser = applicationUserRepository.findByUsername(username);
 
@@ -54,7 +54,7 @@ public class ApplicationUserService {
         ApplicationUser applicationUser = ApplicationUserMapper.INSTANCE.toApplicationUser(requestApplicationUserToCreateToken);
 
         ApplicationUser applicationUserByUserAndPass = findApplicationUserByUserAndPass
-                (applicationUser.getUsername(), applicationUser.getPassword());
+                (applicationUser.getPassword(), applicationUser.getUsername());
 
         SignedJWT signedJWT = tokenCreatorWithoutContext.createSignedJWT(applicationUserByUserAndPass);
 

@@ -17,6 +17,12 @@ spring:
   h2:
     console:
       path: /h2
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
 
 eureka:
   instance:

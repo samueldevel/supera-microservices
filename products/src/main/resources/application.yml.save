@@ -1,6 +1,5 @@
 server:
   port: 8082
-
 spring:
   application:
     name: products
@@ -34,4 +33,4 @@ management:
         include: "*"
   endpoint:
     health:
-     show-details: ALWAYS
+      show-details: ALWAYS
