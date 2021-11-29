@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import samueldev.projects.core.domain.Products;
 import samueldev.projects.core.repository.ProductsRepository;
@@ -102,17 +103,15 @@ class ProductsServiceTest {
 
     @Test
     @DisplayName("findByName returns product containing request name when successful")
-    void findByName_ReturnsProductContainingRequestName_WhenSuccessful() {
+    void findByName_ReturnsProductContainingRequestName_WhenSuccessful(Pageable pageable) {
         Products validProduct = CreateProducts.createValidProduct();
 
-        List<Products> productByName = productsService.findByName(validProduct.getName());
+        Page<Products> productByName = productsService.findByName(pageable, validProduct.getName());
 
         Assertions.assertThat(productByName)
                 .isNotNull()
                 .hasSize(1);
 
-        Assertions.assertThat(productByName.get(0))
-                .isEqualTo(validProduct);
     }
 
     @Test
@@ -174,11 +173,11 @@ class ProductsServiceTest {
 
     @Test
     @DisplayName("findByName returns empty list when product not found")
-    void findById_ReturnsEmptyList_WhenProductNotFound() {
+    void findById_ReturnsEmptyList_WhenProductNotFound(Pageable pageable) {
         BDDMockito.when(productsRepositoryMock.findByName(ArgumentMatchers.anyString()))
                 .thenReturn(Collections.emptyList());
 
-        List<Products> productByName = productsService.findByName("Product");
+        Page<Products> productByName = productsService.findByName(pageable, "Product");
 
         Assertions.assertThat(productByName)
                 .isNotNull()

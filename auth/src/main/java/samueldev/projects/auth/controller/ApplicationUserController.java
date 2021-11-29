@@ -1,6 +1,7 @@
 package samueldev.projects.auth.controller;
 
 import com.nimbusds.jose.JOSEException;
+import com.nimbusds.jwt.JWTClaimsSet;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import samueldev.projects.core.domain.ApplicationUser;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.Principal;
+import java.text.ParseException;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,8 +26,8 @@ public class ApplicationUserController {
 
     @GetMapping(path = "/info")
     @ApiOperation(value = "Get principal user information after set token on header request", response = ApplicationUser.class)
-    public ResponseEntity<ApplicationUser> getUserInfo(Principal principal) {
-        return new ResponseEntity<>(applicationUserService.getUserInfo(principal), HttpStatus.OK);
+    public ResponseEntity<JWTClaimsSet> getUserInfo(@RequestHeader(name = "Authorization") String token) throws ParseException {
+        return new ResponseEntity<>(applicationUserService.getUserInfo(token), HttpStatus.OK);
     }
 
     @PostMapping(path = "/token")

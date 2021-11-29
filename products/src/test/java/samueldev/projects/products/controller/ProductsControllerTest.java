@@ -11,6 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -47,8 +48,8 @@ class ProductsControllerTest {
         BDDMockito.when(productsServiceMock.findById(ArgumentMatchers.anyLong()))
                 .thenReturn(CreateProducts.createValidProduct());
 
-        BDDMockito.when(productsServiceMock.findByName(ArgumentMatchers.anyString()))
-                .thenReturn(List.of(CreateProducts.createValidProduct()));
+        BDDMockito.when(productsServiceMock.findByName(ArgumentMatchers.any(), ArgumentMatchers.anyString()))
+                .thenReturn(productPage);
 
         BDDMockito.when(productsServiceMock.save(ArgumentMatchers.any(ProductsPostRequestBody.class)))
                 .thenReturn(CreateProducts.createValidProduct());
@@ -112,10 +113,10 @@ class ProductsControllerTest {
 
     @Test
     @DisplayName("findByName returns product containing request name when successful")
-    void findByName_ReturnsProductContainingRequestName_WhenSuccessful() {
+    void findByName_ReturnsProductContainingRequestName_WhenSuccessful(Pageable pageable) {
         Products validProduct = CreateProducts.createValidProduct();
 
-        ResponseEntity<List<Products>> entityByName = productsController.findByName(validProduct.getName());
+        ResponseEntity<Page<Products>> entityByName = productsController.findByName(pageable, validProduct.getName());
 
         Assertions.assertThat(entityByName.getStatusCode()).isEqualTo(HttpStatus.OK);
 
@@ -123,8 +124,6 @@ class ProductsControllerTest {
                 .isNotNull()
                 .hasSize(1);
 
-        Assertions.assertThat(entityByName.getBody().get(0))
-                .isEqualTo(validProduct);
     }
 
     @Test
@@ -204,11 +203,11 @@ class ProductsControllerTest {
 
     @Test
     @DisplayName("findByName returns empty list when product not found")
-    void findById_ReturnsEmptyList_WhenProductNotFound() {
-        BDDMockito.when(productsServiceMock.findByName(ArgumentMatchers.anyString()))
-                .thenReturn(Collections.emptyList());
+    void findById_ReturnsEmptyList_WhenProductNotFound(Pageable pageable) {
+        BDDMockito.when(productsServiceMock.findByName(ArgumentMatchers.any(), ArgumentMatchers.anyString()))
+                .thenReturn(Page.empty());
 
-        ResponseEntity<List<Products>> entityProduct = productsController.findByName("Product");
+        ResponseEntity<Page<Products>> entityProduct = productsController.findByName(pageable, "Product");
 
         Assertions.assertThat(entityProduct.getBody())
                 .isNotNull()

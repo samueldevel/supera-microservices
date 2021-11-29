@@ -2,6 +2,7 @@ package samueldev.projects.products.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import samueldev.projects.core.domain.Products;
@@ -11,6 +12,7 @@ import samueldev.projects.core.requests.ProductsPutRequestBody;
 import samueldev.projects.products.mappers.ProductsMapper;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -32,9 +34,25 @@ public class ProductsService {
         return productsRepository.findById(id).orElseThrow(() -> new RuntimeException("Id not found!"));
     }
 
-    public List<Products> findByName(String name) {
+    public Page<Products> findByName(Pageable pageable, String name) {
+        List<Products> productsFilteredByName = findAllPageable(pageable).stream().filter(
+                (product) -> product.getName().contains(name)).collect(Collectors.toList());
 
-        return productsRepository.findByName(name);
+        return new PageImpl<>(productsFilteredByName);
+    }
+
+    public Page<Products> filterScoreToMaxMin(Pageable pageable, int min, int max) {
+        List<Products> productsFilteredByScore = findAllPageable(pageable).stream().filter(
+                (product) -> product.getScore() > min && product.getScore() < max).collect(Collectors.toList());
+
+        return new PageImpl<>(productsFilteredByScore);
+    }
+
+    public Page<Products> filterPriceToMaxMin(Pageable pageable, int min, int max) {
+        List<Products> productsFilteredByPrice = findAllPageable(pageable).stream().filter(
+                (product -> product.getPrice() >= min && product.getPrice() <= max)).collect(Collectors.toList());
+
+        return new PageImpl<>(productsFilteredByPrice);
     }
 
     public Products save(ProductsPostRequestBody productsPostRequestBody) {
