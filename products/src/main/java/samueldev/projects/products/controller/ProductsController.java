@@ -23,7 +23,7 @@ public class ProductsController {
     private final ProductsService productsService;
 
     @GetMapping()
-    @ApiOperation(value = "List all availables products", response = Products.class)
+    @ApiOperation(value = "List all available products", response = Products.class)
     public ResponseEntity<List<Products>> findAll() {
 
         return new ResponseEntity<>(productsService.findAll(), HttpStatus.OK);
