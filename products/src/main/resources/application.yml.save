@@ -1,9 +1,8 @@
 server:
-  port: 8084
-
+  port: 8082
 spring:
   application:
-    name: monitor
+    name: products
   datasource:
     url: jdbc:h2:mem:~/superagames
     username: root
@@ -11,6 +10,10 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+      show-sql: true
+  flyway:
+    table: products_flyway_schema_history
+    baseline-on-migrate: true
   h2:
     console:
       path: /h2
@@ -18,8 +21,6 @@ spring:
 eureka:
   instance:
     prefer-ip-adress: true
-    leaseRenewalIntervalInSeconds: 10
-    health-check-url-path: /actuator/health
   client:
     service-url:
       defaultZone: http://localhost:8081/eureka/

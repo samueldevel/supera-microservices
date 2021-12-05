@@ -23,7 +23,7 @@ public class ProductsController {
     private final ProductsService productsService;
 
     @GetMapping()
-    @ApiOperation(value = "List all availables products", response = Products.class)
+    @ApiOperation(value = "List all available products", response = Products.class)
     public ResponseEntity<List<Products>> findAll() {
 
         return new ResponseEntity<>(productsService.findAll(), HttpStatus.OK);
@@ -46,9 +46,21 @@ public class ProductsController {
 
     @GetMapping(path = "/name")
     @ApiOperation(value = "List products with the same order name", response = Products.class)
-    public ResponseEntity<List<Products>> findByName(@RequestParam String name) {
+    public ResponseEntity<Page<Products>> findByName(Pageable pageable, @RequestParam String name) {
 
-        return new ResponseEntity<>(productsService.findByName(name), HttpStatus.OK);
+        return new ResponseEntity<>(productsService.findByName(pageable, name), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/score")
+    @ApiOperation(value = "List products with score between max and min", response = Products.class)
+    public ResponseEntity<Page<Products>> filterScoreToMaxMin(Pageable pageable, @RequestParam int min, @RequestParam() int max) {
+        return new ResponseEntity<>(productsService.filterScoreToMaxMin(pageable, min, max), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/price")
+    @ApiOperation(value = "List products with price between max and min", response = Products.class)
+    public ResponseEntity<Page<Products>> filterPriceToMaxMin(Pageable pageable, @RequestParam int min, @RequestParam() int max) {
+        return new ResponseEntity<>(productsService.filterPriceToMaxMin(pageable, min, max), HttpStatus.OK);
     }
 
     @PostMapping()

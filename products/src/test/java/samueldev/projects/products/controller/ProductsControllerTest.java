@@ -34,9 +34,14 @@ class ProductsControllerTest {
     @Mock
     private ProductsService productsServiceMock;
 
+    public PageImpl<Products> productPage(Products products) {
+
+        return new PageImpl<>(List.of(products));
+    }
+
     @BeforeEach
     void setup() {
-        PageImpl<Products> productPage = new PageImpl<>(List.of(CreateProducts.createValidProduct()));
+        PageImpl<Products> productPage = productPage(CreateProducts.createValidProduct());
 
         BDDMockito.when(productsServiceMock.findAllPageable(ArgumentMatchers.any()))
                 .thenReturn(productPage);
@@ -47,9 +52,14 @@ class ProductsControllerTest {
         BDDMockito.when(productsServiceMock.findById(ArgumentMatchers.anyLong()))
                 .thenReturn(CreateProducts.createValidProduct());
 
-        BDDMockito.when(productsServiceMock.findByName(ArgumentMatchers.anyString()))
-                .thenReturn(List.of(CreateProducts.createValidProduct()));
+        BDDMockito.when(productsServiceMock.findByName(ArgumentMatchers.any(), ArgumentMatchers.anyString()))
+                .thenReturn(productPage);
 
+        BDDMockito.when(productsServiceMock.filterPriceToMaxMin(ArgumentMatchers.any(), ArgumentMatchers.anyInt(), ArgumentMatchers.anyInt()))
+                .thenReturn(CreateProducts.createProductByFilteringPriceByMinMax(0, 50));
+
+        BDDMockito.when(productsServiceMock.filterScoreToMaxMin(ArgumentMatchers.any(), ArgumentMatchers.anyInt(), ArgumentMatchers.anyInt()))
+                .thenReturn(CreateProducts.createProductByFilteringScoreByMinMax(50, 100));
         BDDMockito.when(productsServiceMock.save(ArgumentMatchers.any(ProductsPostRequestBody.class)))
                 .thenReturn(CreateProducts.createValidProduct());
 
@@ -115,7 +125,7 @@ class ProductsControllerTest {
     void findByName_ReturnsProductContainingRequestName_WhenSuccessful() {
         Products validProduct = CreateProducts.createValidProduct();
 
-        ResponseEntity<List<Products>> entityByName = productsController.findByName(validProduct.getName());
+        ResponseEntity<Page<Products>> entityByName = productsController.findByName(null, validProduct.getName());
 
         Assertions.assertThat(entityByName.getStatusCode()).isEqualTo(HttpStatus.OK);
 
@@ -123,8 +133,42 @@ class ProductsControllerTest {
                 .isNotNull()
                 .hasSize(1);
 
-        Assertions.assertThat(entityByName.getBody().get(0))
-                .isEqualTo(validProduct);
+    }
+
+    @Test
+    @DisplayName("filterPriceToMaxMin filter price based on min max fields value when successful")
+    void filterPriceToMaxMin_FilterPriceBasedOnMinMaxFieldsValue_WhenSuccessful() {
+        ResponseEntity<Page<Products>> entityFilteredProduct = productsController.filterPriceToMaxMin(null, 0, 50);
+
+        Assertions.assertThat(entityFilteredProduct.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+        Assertions.assertThat(entityFilteredProduct.getBody())
+                .isNotNull()
+                .isNotEmpty()
+                .isEqualTo(CreateProducts.createProductByFilteringPriceByMinMax(0, 50));
+
+        Assertions.assertThat(entityFilteredProduct.getBody().getTotalElements())
+                .isNotNull()
+                .isNotZero()
+                .isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("filterScoreToMaxMin filter score based on min max fields value when successful")
+    void filterScoreToMaxMin_FilterPriceBasedOnMinMaxFieldsValue_WhenSuccessful() {
+        ResponseEntity<Page<Products>> entityFilteredProduct = productsController.filterScoreToMaxMin(null, 50, 100);
+
+        Assertions.assertThat(entityFilteredProduct.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+        Assertions.assertThat(entityFilteredProduct.getBody())
+                .isNotNull()
+                .isNotEmpty()
+                .isEqualTo(CreateProducts.createProductByFilteringScoreByMinMax(50, 100));
+
+        Assertions.assertThat(entityFilteredProduct.getBody().getTotalElements())
+                .isNotNull()
+                .isNotZero()
+                .isEqualTo(1);
     }
 
     @Test
@@ -205,10 +249,10 @@ class ProductsControllerTest {
     @Test
     @DisplayName("findByName returns empty list when product not found")
     void findById_ReturnsEmptyList_WhenProductNotFound() {
-        BDDMockito.when(productsServiceMock.findByName(ArgumentMatchers.anyString()))
-                .thenReturn(Collections.emptyList());
+        BDDMockito.when(productsServiceMock.findByName(ArgumentMatchers.any(), ArgumentMatchers.anyString()))
+                .thenReturn(Page.empty());
 
-        ResponseEntity<List<Products>> entityProduct = productsController.findByName("Product");
+        ResponseEntity<Page<Products>> entityProduct = productsController.findByName(null, "Product");
 
         Assertions.assertThat(entityProduct.getBody())
                 .isNotNull()
