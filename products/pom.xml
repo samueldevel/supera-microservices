@@ -16,6 +16,7 @@
         <java.version>11</java.version>
         <core.version>1.0.0</core.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
+        <flyway-maven-plugin.version>8.1.0</flyway-maven-plugin.version>
     </properties>
     <dependencies>
         <dependency>
@@ -30,7 +31,6 @@
             <groupId>samueldev.projects</groupId>
             <artifactId>token</artifactId>
             <version>1.0.0</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 
@@ -74,8 +74,9 @@
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
+                <version>${flyway-maven-plugin.version}</version>
                 <configuration>
-                    <url>jdbc:mysql://localhost:3306/superagames</url>
+                    <url>jdbc:h2:mem:~/superagames</url>
                     <user>root</user>
                     <password>root</password>
                 </configuration>

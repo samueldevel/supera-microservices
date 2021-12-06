@@ -33,8 +33,10 @@ public class SecurityCredentialsConfig extends SecurityTokenConfig {
         http
                 .addFilter(new JwtUsernameAndPasswordAuthenticationFilter
                         (authenticationManager(), jwtConfiguration, tokenCreator))
-
-                .addFilterAfter(new JwtTokenAuthorizationFilter(jwtConfiguration, tokenConverter), UsernamePasswordAuthenticationFilter.class);
+                .addFilterAfter(new JwtTokenAuthorizationFilter(jwtConfiguration, tokenConverter), UsernamePasswordAuthenticationFilter.class)
+                .authorizeRequests()
+                .antMatchers("/v1/user/token").permitAll()
+                .antMatchers("/v1/user/info").hasAnyRole("ADMIN", "USER");
         super.configure(http);
     }
 

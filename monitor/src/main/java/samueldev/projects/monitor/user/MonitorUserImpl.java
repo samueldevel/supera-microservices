@@ -28,7 +28,6 @@ public class MonitorUserImpl implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("user was not found in the database"));
         log.info("ApplicationUser found the '{}'", applicationUser);
 
-
         return new CustomUserDetails(applicationUser);
     }
 

@@ -14,6 +14,7 @@
     <description>Supera&apos;s Authentication Service</description>
     <properties>
         <java.version>11</java.version>
+        <flyway-maven-plugin.version>8.1.0</flyway-maven-plugin.version>
     </properties>
     <dependencies>
         <dependency>
@@ -79,8 +80,9 @@
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
+                <version>${flyway-maven-plugin.version}</version>
                 <configuration>
-                    <url>jdbc:mysql://localhost:3306/superagames</url>
+                    <url>jdbc:h2:mem:~/superagames</url>
                     <user>root</user>
                     <password>root</password>
                 </configuration>
