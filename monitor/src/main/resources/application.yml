@@ -11,6 +11,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+  flyway:
+    table: monitor_flyway_schema_history
+    baseline-on-migrate: true
   h2:
     console:
       path: /h2
