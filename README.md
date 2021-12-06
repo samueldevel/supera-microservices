@@ -164,8 +164,6 @@ endpoints, você só precisa inserir o token
 
 https://user-images.githubusercontent.com/81378783/144925386-2630bb2c-e4a0-4d7d-a529-b0476745c212.mp4
 
-https://user-images.githubusercontent.com/81378783/144925240-818abe24-bf5f-44f5-982b-1a01ccafb4af.gif
-
 </div>
 
 <div>
