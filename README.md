@@ -1,60 +1,47 @@
-<body>
 <h2>Bem vindo ao meu projeto com spring boot</h2>
 
-  <div>
-    <h3>Uso principal da api </h3>  
-    [https://superagames.netlify.app/](https://superagames.netlify.app/)
-    `E-commerce criado com React, Atomic design, Material Ui e Context api`
-    Utilizei da api para compor os produtos do e-commerce.
-    
-    O motivo pelo qual não foi realizado o deploy do backend foi
-    <p>querer utilizar o e-commerce como base de interface para quem está testando a aplicação, logo você pode fazer edições ou adicionar novos produtos e perceber no e-commerce que a edição foi concluida</p>
-    
-    <hr />
-    
-        <h5>Dependencias</h5>
+<div>
+<h3>Manual de instalação e utilização</h3>
+Este sistema é utilizado pelo meu e-commerce <b>React</b>, que utilizará backend da sua maquina local para funcionar, encontrado em https://superagames.netlify.app/
 
-                    <ul>
-                        <li>Git</li>
-                        <li>Maven</li>
-                        <li>java-jdk-11</li>
-                        <li>Yarn</li>
-                    </ul>
-    
-     <div>
-                    <h5>Instalação do backend</h5>
-                    <code>
-                        git clone
-                        https://github.com/muelthebest/supera-microservices
-                    </code>
+| Lá terá um manual de inicialização, mas passarei aqui também |
+| ---- |
 
-                    <br />
+<h5>Dependencias</h5>
 
-                    <code>cd supera-microservices</code>
+  -   Git
+-   Maven
+-   java-jdk-11
+-   Yarn
 
-                    <br />
+ <h5>Instalação do backend</h5>
+ 
+ `git clone https://github.com/muelthebest/supera-microservices`
 
-                    <code>mvn install</code>
+<br />
 
-                    <br />
+`cd supera-microservices`
 
-                    <code>yarn install</code>
+<br />
 
-                    <br />
+`mvn install`
 
-                    <br />
+<br />
 
-                    <p>
-                        <b>
-                            Para inicializar todo o projeto rapidamente e já
-                            poder acessar o e-commerce, execute o seguinte
-                            script:
-                        </b>
-                    </p>
+`yarn install`
 
-                    <code>yarn spring-run:all</code>
-  </div>
+<br />
 
+<p>
+  <b>
+Para inicializar todo o projeto rapidamente e já
+poder acessar o e-commerce, execute o seguinte
+script:
+  </b>
+</p>
+
+`yarn spring-run:all`
+</div>
 <div>
 <h3>Pensando na agilidade</h3>
 
@@ -141,7 +128,7 @@ username: <b>developeruser</b>
 <p>É bem simples para quem tem acesso aos usuários.
 Para gerar o seu token eu criei algumas metodologias dos quais são</p>
 
-[Swagger Documentation](http://localhost:8083/swagger-ui/)
+[http://localhost:8083/swagger-ui/](http://localhost:8083/swagger-ui/)
 > Para agilizar o teste da aplicação, utilizei a geração e a verificação do token
 > pelo próprio swagger:
 
@@ -154,7 +141,7 @@ Para gerar o seu token eu criei algumas metodologias dos quais são</p>
 
 <hr/>
 
-[Request body do próprio context do spring security](http://localhost:8080/auth/login/)
+[http://localhost:8080/auth/login/](http://localhost:8080/auth/login/)
 > Está metodologia é mais usual para quem quer testar em serviços
 > como postman, você precisa apenas colocar o usuário e senha
 > de autenticação na request body, e a response será seu token
@@ -211,4 +198,3 @@ Caso você use o role: ADMIN... Terá acesso a todo monitoramento.
 `Estrutura de micro serviços, com java + spring boot`
 
 </div>
-</body>
