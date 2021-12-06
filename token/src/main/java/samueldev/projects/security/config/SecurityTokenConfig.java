@@ -32,9 +32,6 @@ public class SecurityTokenConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/swagger-ui/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/swagger-resources/**", "/webjars/springfox-swagger-ui/**"
                         , "/v2/api-docs/**").permitAll()
-                .antMatchers("/v1/products/**").hasRole("ADMIN")
-                .antMatchers("/v1/user/token").permitAll()
-                .antMatchers("/v1/user/info").hasAnyRole("ADMIN", "USER")
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().accessDeniedHandler((req, resp, e) -> resp.sendError(HttpServletResponse.SC_UNAUTHORIZED, "this user does not have permission to access this url"));
