@@ -161,8 +161,8 @@ Com o swagger documentation você pode colocar o token apenas uma vez e validar 
 um simbolo de cadeado em todos os endpoints, porém no topo do swagger também tem um cadeado que desbloqueia todos os
 endpoints, você só precisa inserir o token
   
-https://user-images.githubusercontent.com/81378783/144924726-eb701f82-dfbc-4089-854f-4a013b70ab87.mp4
-  
+  ![tutorial-unlock-services](https://user-images.githubusercontent.com/81378783/144925240-818abe24-bf5f-44f5-982b-1a01ccafb4af.gif)
+
 </div>
 
 <div>
