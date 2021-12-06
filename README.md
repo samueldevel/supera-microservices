@@ -150,8 +150,8 @@ Para gerar o seu token eu criei algumas metodologias dos quais são</p>
 
 <h6>Acesso aos serviços</h6>
 
-<p>Para acessar os serviços você precisa colocar o token no header, com o prefixo
-<b>Authorization</b>, o token precisa estar válido, assinado e encriptografado</p>
+<p>Para acessar os serviços você precisa colocar o token no header, no campo
+<b>Authorization</b> e o prefixo Bearer , o token precisa estar válido, assinado e encriptografado</p>
 
 <p><b>Swagger documentation</b></p>
 
