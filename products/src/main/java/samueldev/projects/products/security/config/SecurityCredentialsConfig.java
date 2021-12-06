@@ -21,6 +21,9 @@ public class SecurityCredentialsConfig extends SecurityTokenConfig {
 
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .authorizeRequests()
+                .antMatchers("/v1/products/**").hasRole("ADMIN")
+                .and()
                 .addFilterAfter(new JwtTokenAuthorizationFilter(jwtConfiguration, tokenConverter), UsernamePasswordAuthenticationFilter.class);
         super.configure(http);
     }
