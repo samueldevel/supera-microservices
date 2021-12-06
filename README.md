@@ -73,7 +73,7 @@ precisar entrar no seu IDEA. Mais abaixo falarei sobre todos os scripts
 <div>
 <h3>Usuários gerados</h3>
 
-<p>Não foi utilizado usuários mais complicados devido a aplicação ter sido criada por
+<p>Não foi utilizado de logins mais seguros devido a aplicação ter sido criada por
 fins próprios e para facilitar quem quer testa-lá.</p>
 
 <ul>
