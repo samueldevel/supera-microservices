@@ -160,6 +160,9 @@ Para gerar o seu token eu criei algumas metodologias dos quais são</p>
 Com o swagger documentation você pode colocar o token apenas uma vez e validar todos os endpoints necessários. Você verá
 um simbolo de cadeado em todos os endpoints, porém no topo do swagger também tem um cadeado que desbloqueia todos os
 endpoints, você só precisa inserir o token
+  
+https://user-images.githubusercontent.com/81378783/144924726-eb701f82-dfbc-4089-854f-4a013b70ab87.mp4
+  
 </div>
 
 <div>
