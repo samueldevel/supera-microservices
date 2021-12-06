@@ -1,8 +1,59 @@
 <body>
 <h2>Bem vindo ao meu projeto com spring boot</h2>
 
-|Aviso: O projeto está em desenvolvimento, porém é totalmente utilizável|
-| --- |
+  <div>
+    <h3>Uso principal da api </h3>  
+    [https://superagames.netlify.app/](https://superagames.netlify.app/)
+    `E-commerce criado com React, Atomic design, Material Ui e Context api`
+    Utilizei da api para compor os produtos do e-commerce.
+    
+    O motivo pelo qual não foi realizado o deploy do backend foi
+    <p>querer utilizar o e-commerce como base de interface para quem está testando a aplicação, logo você pode fazer edições ou adicionar novos produtos e perceber no e-commerce que a edição foi concluida</p>
+    
+    <hr />
+    
+        <h5>Dependencias</h5>
+
+                    <ul>
+                        <li>Git</li>
+                        <li>Maven</li>
+                        <li>java-jdk-11</li>
+                        <li>Yarn</li>
+                    </ul>
+    
+     <div>
+                    <h5>Instalação do backend</h5>
+                    <code>
+                        git clone
+                        https://github.com/muelthebest/supera-microservices
+                    </code>
+
+                    <br />
+
+                    <code>cd supera-microservices</code>
+
+                    <br />
+
+                    <code>mvn install</code>
+
+                    <br />
+
+                    <code>yarn install</code>
+
+                    <br />
+
+                    <br />
+
+                    <p>
+                        <b>
+                            Para inicializar todo o projeto rapidamente e já
+                            poder acessar o e-commerce, execute o seguinte
+                            script:
+                        </b>
+                    </p>
+
+                    <code>yarn spring-run:all</code>
+  </div>
 
 <div>
 <h3>Pensando na agilidade</h3>
@@ -117,7 +168,7 @@ Para gerar o seu token eu criei algumas metodologias dos quais são</p>
 
 <p><b>Swagger documentation</b></p>
 
-[Swagger dos produtos](http://localhost:8082/swagger-ui/)
+[http://localhost:8082/swagger-ui/](http://localhost:8082/swagger-ui/)
 
 Com o swagger documentation você pode colocar o token apenas uma vez e validar todos os endpoints necessários. Você verá
 um simbolo de cadeado em todos os endpoints, porém no topo do swagger também tem um cadeado que desbloqueia todos os
@@ -139,7 +190,7 @@ que está no core. E o seu teste está dentro do módulo auth e não no core
 <div>
 <h3>Monitoramento</h3>
 
-[Monitoramento](http://localhost:8084)
+[http://localhost:8084](http://localhost:8084)
 
 |Ao entrar no módulo de monitoramento você verá uma página de login, o login utilizado é o mesmo do application User|
 | --- |
