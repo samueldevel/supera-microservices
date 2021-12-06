@@ -47,7 +47,7 @@ script:
 
 <h6> Banco de dados </h6>
 
-<p>Aqui você pode tanto usar banco de dados em mémoria quanto o docker</p>
+<p>Aqui você pode tanto usar banco de dados em mémoria tanto quanto o docker</p>
 
 <p>Branchs dos bancos de dados</p>
 
