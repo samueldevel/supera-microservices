@@ -2,7 +2,8 @@
 
 <div>
 <h3>Manual de instalação e utilização</h3>
-Este sistema é utilizado pelo meu e-commerce <b>React</b>, que utilizará backend da sua maquina local para funcionar, encontrado em [http://localhost:8083/swagger-ui/](http://localhost:8083/swagger-ui/)
+Este sistema é utilizado pelo meu e-commerce <b>React</b>, que utilizará backend da sua maquina local para funcionar, encontrado em 
+[http://localhost:8083/swagger-ui/](http://localhost:8083/swagger-ui/)
 
 | Lá terá um manual de inicialização, mas passarei aqui também |
 | ---- |
