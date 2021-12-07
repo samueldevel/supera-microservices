@@ -4,7 +4,7 @@
 <h3>Manual de instalação e utilização</h3>
 <p>Este sistema é utilizado pelo meu e-commerce feito com <b>React</b>, que utilizará backend da sua maquina local para funcionar, encontrado em </p> 
 
-  [https://superagames.netlify.app](https://superagames.netlify.app){:target="_blank"}
+  [https://superagames.netlify.app](https://superagames.netlify.app){target="_blank"}
 
 | Lá terá um manual de inicialização, mas passarei aqui também |
 | ---- |
