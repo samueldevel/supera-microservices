@@ -25,11 +25,11 @@ public class SecurityMonitoringConfig extends SecurityTokenConfig {
                 .antMatchers("/actuator/**").permitAll()
                 .antMatchers("/instances/499c8d58d310/**").hasRole("ADMIN")
                 .antMatchers("/instances/4d9f3acb4167/**").hasRole("ADMIN")
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .and()
                 .httpBasic();
-        super.configure(http);
     }
 
     @Override
