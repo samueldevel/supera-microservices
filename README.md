@@ -4,7 +4,7 @@
 <h3>Manual de instalação e utilização</h3>
 <p>Este sistema é utilizado pelo meu e-commerce feito com <b>React</b>, que utilizará backend da sua maquina local para funcionar, encontrado em </p> 
 
-  <a target="_blank" href="example.com"></a>
+  <a target="_blank" href="example.com">aa</a>
 
 | Lá terá um manual de inicialização, mas passarei aqui também |
 | ---- |
